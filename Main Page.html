@@ -1,33 +1,62 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content= 
-            "width=device-width, initial-scale=1.0"> 
-      
-    <title> 
-        Draw with the mouse in a HTML5 canvas 
-    </title> 
-      
-    <style> 
-        * { 
-            overflow: hidden; 
-        } 
-        body { 
-            text-align: center; 
-        } 
-        h1 { 
-            color: green; 
-        } 
-    </style> 
-</head> 
-  
-<body> 
-    <h1>GeeksforGeeks</h1> 
-    <b>Draw anything you want</b> 
-    <hr> 
-    <canvas id="canvas"></canvas> 
-    <script src="index.js"></script> 
-</body> 
-  
-</html> 
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title></title>
+	<style>
+		.canvas {
+			left: 100px;
+		}
+		body {
+			background-color: black;
+		}
+	</style>
+	<script>
+	var ColorArray = ["red", "blue"];
+	var canvas = "";
+	var Info = "";
+	var x = 500;
+	var y = 500;
+	var Run = {
+		Change : function (){
+			window.addEventListener('keydown', function (e) {
+				Run.key = (Run.key || []); 										//W3Schools: trying to find out how to be able to click multiple squares at once
+				Run.key[e.keyCode] = (e.type == "keydown");
+			})
+			window.addEventListener('keyup', function (e) {
+				Run.key[e.keyCode] = (e.type == "keydown");            
+			})
+		}
+	}
+	function SetUp(){
+		canvas = document.getElementById('canvas');
+		Info = canvas.getContext('2d');
+		Run.Change();
+		
+	}
+	function getXY(event){
+		x = event.clientX;
+		y = event.clientY;
+		if (Run.key && Run.key[81]) {
+			Info.fillStyle = "skyblue";
+		}
+				
+		else if (Run.key && Run.key[87]) {
+			Info.fillStyle = "red";
+		}
+				
+		else if (Run.key && Run.key[69]) {
+			Info.fillStyle = "green";
+		}
+		Info.fillRect(x, y, 10, 10);
+		
+		
+	}
+	
+	
+	
+	</script>
+</head>
+<body onLoad="SetUp()">
+	<canvas class="canvas" id="canvas" width="1500" height="700" onmousedown="getXY(event)">
+</body>
+</html>
