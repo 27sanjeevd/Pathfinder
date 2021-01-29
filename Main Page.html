@@ -15,7 +15,7 @@
 		var Run = {
 			Change : function (){
 				window.addEventListener('keydown', function (e) {
-					Run.key = (Run.key || []); 										//W3Schools: trying to find out how to be able to click multiple squares at once
+					Run.key = (Run.key || []); 										
 					Run.key[e.keyCode] = (e.type == "keydown");
 				})
 				window.addEventListener('keyup', function (e) {
@@ -34,16 +34,18 @@
 			y = event.clientY;
 			if (Run.key && Run.key[81]) {
 				Info.fillStyle = "skyblue";
+				Info.fillRect(x-10, y-10, 10, 10);
 			}
 					
 			else if (Run.key && Run.key[87]) {
 				Info.fillStyle = "red";
+				Info.fillRect(x-10, y-10, 10, 10);
 			}
 					
 			else if (Run.key && Run.key[69]) {
 				Info.fillStyle = "green";
+				Info.fillRect(x-10, y-10, 10, 10);
 			}
-			Info.fillRect(x-10, y-10, 10, 10);
 			xNode.push(x-10);
 			yNode.push(y-10);
 			counter++;
