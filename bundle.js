@@ -1,4 +1,4 @@
-function bundle1(){
+function bundle1(x){
 
-
+	return x;
 }
