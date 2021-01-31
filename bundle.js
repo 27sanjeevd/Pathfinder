@@ -3,6 +3,8 @@ var yNode = [];
 var counter = 0;
 var canvas = "";
 var Info = "";
+var generateGraph = false;
+var graph = [];
 
 //Generates a random Number
 function randomInt(min, max) {	
@@ -54,13 +56,23 @@ function initializeNodes(xVals, yVals){
 	return gfg;
 }
 
-
+//gets the current mouse position
 function getXY(event){
 	
-	var temp1 = false;
 	
 	var x = event.clientX;
 	var y = event.clientY;
+	return [x, y];
+}
+function main1(event){
+	
+	var x = 0;
+	var y = 0;
+	x = getXY(event)[0];
+	y = getXY(event)[1];
+	
+	var temp1 = false;
+	
 	if (Run.key && Run.key[81]) {
 		Info.fillStyle = "skyblue";
 		Info.fillRect(x-10, y-10, 10, 10);
@@ -80,9 +92,18 @@ function getXY(event){
 	}
 	else if (Run.key && Run.key[82]) {
 		
-		var graph = initializeNodes(xNode, yNode);
+		if (generateGraph == false){
+			graph = initializeNodes(xNode, yNode);
+			generateGraph = true;
+		}
+		
+		Info.clearRect(0, 0, canvas.width, canvas.height);
 		
 		for(var i = 0; i < graph.length; i++){
+			
+			Info.fillStyle = "green";
+			Info.fillRect(xNode[i], yNode[i], 10, 10);
+			
 			
 			for(var j = 0; j < graph[i].length; j++){
 				
