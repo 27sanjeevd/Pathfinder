@@ -43,7 +43,7 @@ function initializeNodes(xVals, yVals){
 	for(let x = 0; x < gfg.length; x++){
 		
 		gfg[x] = [];
-		let paths = randomInt(0, 3);
+		let paths = randomInt(1, 3);
 		
 		for(let y = 0; y < paths; y++){
 			
