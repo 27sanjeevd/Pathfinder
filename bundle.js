@@ -1,17 +1,8 @@
-function bundle() {
-	
-	alert("HI");
-}
-
-
-var ColorArray = ["red", "blue"];
 var xNode = [];
 var yNode = [];
 var counter = 0;
 var canvas = "";
 var Info = "";
-var x = 500;
-var y = 500;
 
 function SetUp(){
 	canvas = document.getElementById('canvas');
@@ -34,8 +25,8 @@ function getXY(event){
 	
 	var temp1 = false;
 	
-	x = event.clientX;
-	y = event.clientY;
+	var x = event.clientX;
+	var y = event.clientY;
 	if (Run.key && Run.key[81]) {
 		Info.fillStyle = "skyblue";
 		Info.fillRect(x-10, y-10, 10, 10);
