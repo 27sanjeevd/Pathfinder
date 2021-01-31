@@ -88,7 +88,7 @@ function getXY(event){
 				
 				Info.moveTo(xNode[i]+5, yNode[i]+5);
 				Info.lineTo(xNode[graph[i][j]]+5, yNode[graph[i][j]]+5);
-				Info.strokeStyle = "#39FF14";
+				Info.strokeStyle = "#7b967a";
 				Info.stroke();
 			}
 			
