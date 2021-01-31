@@ -4,12 +4,23 @@ var counter = 0;
 var canvas = "";
 var Info = "";
 
+//Generates a random Number
+function randomInt(min, max) {	
+			
+	var RandInt = Math.floor(Math.random() * (max - min)) + (min);
+			
+	return RandInt;
+}
+
+//Set up
 function SetUp(){
 	canvas = document.getElementById('canvas');
 	Info = canvas.getContext('2d');
 	Run.Change();
 			
 }
+
+//Main Event Listener
 var Run = {
 	Change : function (){
 		window.addEventListener('keydown', function (e) {
@@ -21,6 +32,29 @@ var Run = {
 		})
 	}
 }
+
+
+//Initializes the graph
+function initializeNodes(xVals, yVals){
+	let gfg = new Array(xVals.length);
+	
+	for(let x = 0; x < gfg.length; x++){
+		
+		gfg[x] = [];
+		let paths = randomInt(0, 3);
+		
+		for(let y = 0; y < paths; y++){
+			
+			let position = randomInt(0, xVals.length - 1);
+			gfg[x].push(position);
+		}
+	}
+	
+
+	return gfg;
+}
+
+
 function getXY(event){
 	
 	var temp1 = false;
@@ -45,13 +79,22 @@ function getXY(event){
 		temp1 = true;
 	}
 	else if (Run.key && Run.key[82]) {
-		for(var i = 0; i < counter - 1; i++){
+		
+		var graph = initializeNodes(xNode, yNode);
+		
+		for(var i = 0; i < graph.length; i++){
 			
-			Info.moveTo(xNode[i]+5, yNode[i]+5);
-			Info.lineTo(xNode[i+1]+5, yNode[i+1]+5);
-			Info.strokeStyle = "#FF0000";
-			Info.stroke();
+			for(var j = 0; j < graph[i].length; j++){
+				
+				Info.moveTo(xNode[i]+5, yNode[i]+5);
+				Info.lineTo(xNode[graph[i][j]]+5, yNode[graph[i][j]]+5);
+				Info.strokeStyle = "#39FF14";
+				Info.stroke();
+			}
+			
 		}
+		
+		
 	}
 	if (temp1){
 		
