@@ -43,11 +43,35 @@ function initializeNodes(xVals, yVals){
 	for(let x = 0; x < gfg.length; x++){
 		
 		gfg[x] = [];
+		
+		let tempArray = new Array(xVals.length);;
+		let tempArray1 = new Array(xVals.length);
+		
+		for(let y = 0; y < xVals.length; y++){
+			
+			let distance = Math.sqrt((xVals[y] - xVals[x]) ** 2 + (yVals[y] - yVals[x]) ** 2);
+			if (distance != 0){
+				if (tempArray.length == 0){
+					tempArray[y] = distance;
+					tempArray1[y] = y;
+				}
+				else{
+					for(let z = 0; z < tempArray.length; z++){
+						if (tempArray[z] > distance){
+							tempArray.splice(z, 0, distance);
+							tempArray1.splice(z, 0, y);
+						}
+					}
+				}
+			}
+		}
+				
 		let paths = randomInt(1, 3);
 		
-		for(let y = 0; y < paths; y++){
+		
+		for(let g = 0; g < 1; g++){
 			
-			let position = randomInt(0, xVals.length - 1);
+			let position = randomInt(0, tempArray1.length / 4);
 			gfg[x].push(position);
 		}
 	}
