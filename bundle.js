@@ -6,6 +6,14 @@ var Info = "";
 var generateGraph = false;
 var graph = [];
 
+function dfs(graph){
+	
+	if (graph.length != 0){
+		
+		
+	}
+}
+
 //Generates a random Number
 function randomInt(min, max) {	
 			
@@ -74,16 +82,9 @@ function initializeNodes(xVals, yVals){
 			}
 		}
 		
-		let paths = randomInt(1, 3);
-		
-		for(var i = 0; i < d1.length; i++){
-			console.log(d1[i]);
-		}
-		console.log("----");
-		
 		for(let g = 0; g < 1; g++){
 			
-			let position = randomInt(0, xVals.length / 4);
+			let position = randomInt(0, xVals.length/2);
 			gfg[x].push(e1[position]);
 		}
 	}
@@ -126,30 +127,34 @@ function main1(event){
 		Info.fillRect(x-10, y-10, 10, 10);
 		temp1 = true;
 	}
+	else if (Run.key && Run.key[84]) {
+			
+	}
 	else if (Run.key && Run.key[82]) {
 		
 		if (generateGraph == false){
 			graph = initializeNodes(xNode, yNode);
 			generateGraph = true;
-		}
-		
-		Info.clearRect(0, 0, canvas.width, canvas.height);
-		
-		for(var i = 0; i < graph.length; i++){
 			
-			Info.fillStyle = "green";
-			Info.fillRect(xNode[i], yNode[i], 10, 10);
+			Info.clearRect(0, 0, canvas.width, canvas.height);
 			
-			
-			for(var j = 0; j < graph[i].length; j++){
+			for(var i = 0; i < graph.length; i++){
 				
-				Info.moveTo(xNode[i]+5, yNode[i]+5);
-				Info.lineTo(xNode[graph[i][j]]+5, yNode[graph[i][j]]+5);
-				Info.strokeStyle = "#7b967a";
-				Info.stroke();
+				Info.fillStyle = "green";
+				Info.fillRect(xNode[i], yNode[i], 10, 10);
+				
+				
+				for(var j = 0; j < graph[i].length; j++){
+					
+					Info.moveTo(xNode[i]+5, yNode[i]+5);
+					Info.lineTo(xNode[graph[i][j]]+5, yNode[graph[i][j]]+5);
+					Info.strokeStyle = "#7b967a";
+					Info.stroke();
+				}
+				
 			}
-			
 		}
+		
 		
 		
 	}
