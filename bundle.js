@@ -6,11 +6,30 @@ var Info = "";
 var generateGraph = false;
 var graph = [];
 
-function dfs(graph){
+function startDFS(event){
 	
 	if (graph.length != 0){
+		var x = 0;
 		
+		var visited = [];
+		for(var y = 0; y < graph.length; y++){
+			visited.push(false);
+		}
 		
+		for(var y = 0; y < graph[0].length; y++){
+			dfs(graph, event, visited, graph[0][y]);
+		}
+	}
+}
+
+function dfs(graph, event, visited, position){
+	if (visited[position] == false){
+		visited[position] = true;
+		console.log(position);
+		
+		for(var y = 0; y < graph[position].length; y++){
+			dfs(graph, event, visited, graph[position][y]);
+		}
 	}
 }
 
@@ -48,10 +67,11 @@ var Run = {
 function initializeNodes(xVals, yVals){
 	let gfg = new Array(xVals.length);
 	
+	for(let x = 0; x < gfg.length; x++){
+		gfg[x] = [];
+	}
 	
 	for(let x = 0; x < gfg.length; x++){
-		
-		gfg[x] = [];
 		
 		var d1  = [];
 		var e1  = [];
@@ -85,10 +105,24 @@ function initializeNodes(xVals, yVals){
 		for(let g = 0; g < 1; g++){
 			
 			let position = randomInt(0, xVals.length/2);
-			gfg[x].push(e1[position]);
+			
+			var checkBool = true;
+			for(var h = 0; h < gfg[x].length; h++){
+				if (gfg[x][h] == e1[position]){
+					checkBool = false;
+				}
+			}
+			for(var h = 0; h < gfg[e1[position]]; h++){
+				if (gfg[e1[position]][h] == x){
+					checkBool = false;
+				}
+			}
+			if (checkBool){
+				gfg[x].push(e1[position]);
+				gfg[e1[position]].push(x);
+			}
 		}
 	}
-	
 
 	return gfg;
 }
@@ -128,7 +162,7 @@ function main1(event){
 		temp1 = true;
 	}
 	else if (Run.key && Run.key[84]) {
-			
+		startDFS(event);
 	}
 	else if (Run.key && Run.key[82]) {
 		
@@ -148,7 +182,7 @@ function main1(event){
 					
 					Info.moveTo(xNode[i]+5, yNode[i]+5);
 					Info.lineTo(xNode[graph[i][j]]+5, yNode[graph[i][j]]+5);
-					Info.strokeStyle = "#7b967a";
+					Info.strokeStyle = "white";
 					Info.stroke();
 				}
 				
