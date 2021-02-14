@@ -45,32 +45,6 @@ function initializeNodes(xVals, yVals){
 		
 		gfg[x] = [];
 		
-		/*
-		var tempArray = new Array(xVals.length);
-		var tempArray1 = new Array(xVals.length);
-		
-		
-		for(let y = 0; y < xVals.length; y++){
-			
-			
-			if (distance != 0){
-				if (tempArray.length == 0){
-					tempArray[y] = distance;
-					tempArray1[y] = y;
-				}
-				else{
-					for(let z = 0; z < tempArray.length; z++){
-						if (tempArray[z] > distance){
-							tempArray.splice(z, 0, distance);
-							tempArray1.splice(z, 0, y);
-						}
-					}
-				}
-			}
-			
-		}
-		*/	
-		
 		var d1  = [];
 		var e1  = [];
 		
@@ -83,15 +57,34 @@ function initializeNodes(xVals, yVals){
 				e1.push(y);
 			}
 			
-			
+		}
+		
+		var len = d1.length;
+		for(var i =len-1; i >= 0; i--){
+			for(var j =1; j <= 1; j++){
+				if (d1[j-1] > d1[j]){
+					var temp = d1[j-1];
+					d1[j-1] = d1[j];
+					d1[j] = temp;
+					
+					var temp1 = e1[j-1];
+					e1[j-1] = e1[j];
+					e1[j] = temp1;
+				}
+			}
 		}
 		
 		let paths = randomInt(1, 3);
 		
+		for(var i = 0; i < d1.length; i++){
+			console.log(d1[i]);
+		}
+		console.log("----");
+		
 		for(let g = 0; g < 1; g++){
 			
 			let position = randomInt(0, xVals.length / 4);
-			gfg[x].push(position);
+			gfg[x].push(e1[position]);
 		}
 	}
 	
