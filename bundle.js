@@ -40,16 +40,19 @@ var Run = {
 function initializeNodes(xVals, yVals){
 	let gfg = new Array(xVals.length);
 	
+	
 	for(let x = 0; x < gfg.length; x++){
 		
 		gfg[x] = [];
 		
-		let tempArray = new Array(xVals.length);;
-		let tempArray1 = new Array(xVals.length);
+		/*
+		var tempArray = new Array(xVals.length);
+		var tempArray1 = new Array(xVals.length);
+		
 		
 		for(let y = 0; y < xVals.length; y++){
 			
-			let distance = Math.sqrt((xVals[y] - xVals[x]) ** 2 + (yVals[y] - yVals[x]) ** 2);
+			
 			if (distance != 0){
 				if (tempArray.length == 0){
 					tempArray[y] = distance;
@@ -64,14 +67,30 @@ function initializeNodes(xVals, yVals){
 					}
 				}
 			}
+			
 		}
-				
-		let paths = randomInt(1, 3);
+		*/	
 		
+		var d1  = [];
+		var e1  = [];
+		
+		for(var y = 0; y < xVals.length; y++){
+			let distance = Math.sqrt((xVals[y] - xVals[x]) ** 2 + (yVals[y] - yVals[x]) ** 2);
+			
+			if (distance != 0){
+				
+				d1.push(distance);
+				e1.push(y);
+			}
+			
+			
+		}
+		
+		let paths = randomInt(1, 3);
 		
 		for(let g = 0; g < 1; g++){
 			
-			let position = randomInt(0, tempArray1.length / 4);
+			let position = randomInt(0, xVals.length / 4);
 			gfg[x].push(position);
 		}
 	}
