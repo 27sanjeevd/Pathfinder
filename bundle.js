@@ -17,20 +17,45 @@ function startDFS(event){
 		}
 		
 		for(var y = 0; y < graph[0].length; y++){
-			dfs(graph, event, visited, graph[0][y]);
+			dfs(graph, event, visited, graph[0][y], 0);
 		}
 	}
 }
 
-function dfs(graph, event, visited, position){
+function dfs(graph, event, visited, position, end){
 	if (visited[position] == false){
 		visited[position] = true;
 		console.log(position);
 		
+		Info.moveTo(xNode[end]+5, yNode[end]+5);
+		Info.lineTo(xNode[position]+5, yNode[position]+5);
+		Info.strokeStyle = "red";
+		Info.stroke();
+		
 		for(var y = 0; y < graph[position].length; y++){
-			dfs(graph, event, visited, graph[position][y]);
+			dfs(graph, event, visited, graph[position][y], position);
 		}
 	}
+	/*
+	else {
+		Info.clearRect(0, 0, canvas.width, canvas.height);
+			
+		for(var i = 0; i < graph.length; i++){
+				
+			Info.fillStyle = "green";
+			Info.fillRect(xNode[i], yNode[i], 10, 10);				
+				
+			for(var j = 0; j < graph[i].length; j++){
+				
+				Info.moveTo(xNode[i]+5, yNode[i]+5);
+				Info.lineTo(xNode[graph[i][j]]+5, yNode[graph[i][j]]+5);
+				Info.strokeStyle = "white";
+				Info.stroke();
+			}
+			
+		}
+	}
+	*/
 }
 
 //Generates a random Number
